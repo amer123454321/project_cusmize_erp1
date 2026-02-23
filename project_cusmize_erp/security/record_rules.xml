@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <record id="sale_order_sales_own_rule" model="ir.rule">
+        <field name="name">Sales: Own Sale Orders Only</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="groups" eval="[(4, ref('project_cusmize_erp.group_advanced_sales_user'))]"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+    </record>
+
+
+
+    <record id="account_move_sales_rule" model="ir.rule">
+        <field name="name">Sales: View Customer Invoices Only</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="groups" eval="[(4, ref('project_cusmize_erp.group_advanced_sales_user'))]"/>
+        <field name="domain_force">[('move_type', '=', 'out_invoice')]</field>
+    </record>
+
+</odoo>

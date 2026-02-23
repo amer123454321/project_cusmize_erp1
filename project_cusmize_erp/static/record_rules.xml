@@ -1,0 +1,25 @@
+<odoo>
+    <!-- Salesperson can only see their own orders -->
+    <record id="rule_salesperson_own_orders" model="ir.rule">
+        <field name="name">Salesperson: Own Orders</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="groups" eval="[(4, ref('custom_module.group_salesperson'))]"/>
+        <field name="domain_force">[('user_id','=',user.id)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <!-- Sales Team Manager can see all orders -->
+    <record id="rule_sales_team_manager_all_orders" model="ir.rule">
+        <field name="name">Sales Team Manager: All Orders</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="groups" eval="[(4, ref('custom_module.group_sales_team_manager'))]"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+</odoo>

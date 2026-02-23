@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_sale_order_sales_user,sale.order sales user,model_sale_order,project_cusmize_erp.group_advanced_sales_user,1,1,1,0
+access_sale_order_sales_manager,sale.order sales manager,model_sale_order,project_cusmize_erp.group_sales_team_manager_custom,1,1,1,1
+
+access_sale_order_line_sales_user,sale.order.line sales user,model_sale_order_line,project_cusmize_erp.group_advanced_sales_user,1,1,1,0
+access_sale_order_line_sales_manager,sale.order.line sales manager,model_sale_order_line,project_cusmize_erp.group_sales_team_manager_custom,1,1,1,1
+
+access_account_move_finance_user,account.move finance user,model_account_move,project_cusmize_erp.group_finance_controller,1,1,1,0
+access_account_move_finance_manager,account.move finance manager,model_account_move,project_cusmize_erp.group_accounting_director_custom,1,1,1,1
+
+access_res_partner_sales,res.partner sales,model_res_partner,project_cusmize_erp.group_advanced_sales_user,1,1,1,0
+access_res_partner_manager,res.partner manager,model_res_partner,project_cusmize_erp.group_sales_team_manager_custom,1,1,1,1
+
+access_res_users_business_admin,res.users business admin,model_res_users,project_cusmize_erp.group_business_admin,1,1,1,1

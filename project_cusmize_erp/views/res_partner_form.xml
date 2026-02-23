@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_partner_form_credit_discount" model="ir.ui.view">
+        <field name="name">res.partner.form.credit.discount</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+              <xpath expr="//notebook/page[1]" position="inside">
+                <group string="Customer Settings">
+<!--                    <field name="customer_level"/>-->
+                    <field name="max_discount"/>
+                    <field name="credit_limit"/>
+                    <field name="current_credit" readonly="1"/>
+                    <field name="allowed_currency_ids" widget="many2many_tags"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

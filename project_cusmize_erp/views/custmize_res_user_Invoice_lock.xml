@@ -1,0 +1,24 @@
+<odoo>
+    <record id="view_users_form_invoice_lock" model="ir.ui.view">
+        <field name="name">res.users.form.invoice.lock</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='preferences']" position="inside">
+                <group string="Invoice Lock Settings">
+                    <div>amer</div>
+                                        <field name="invoice_lock_enabled"/>
+                    <field name="invoice_lock_days"/>
+                </group>
+                <notebook position="inside">
+                <page string="Sales Statistics">
+                    <group>
+                        <field name="total_sales_amount" readonly="1"/>
+                        <field name="total_profit_amount" readonly="1"/>
+                    </group>
+                </page>
+            </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>
