@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="i_tech_base_view_account_move_list" model="ir.ui.view">
+            <field name="name">i.tech.base.account.move.view.list.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_force_register_payment']" position="after">
+                    <button name="action_force_open_i_tech_account_payment_wizard" type="object" string=" CustomPay" groups="account.group_account_invoice" invisible="context.get('default_move_type') not in ('out_invoice', 'out_refund', 'out_receipt', 'in_invoice', 'in_refund','in_receipt')"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <record id="i_tech_base_view_account_move_form" model="ir.ui.view">
+            <field name="name">i.tech.base.account.move.view.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_register_payment']" position="after">
+                    <button name="action_open_i_tech_account_payment_wizard" 
+                    invisible="(
+                                    state != 'posted'
+                                    or payment_state not in ('not_paid', 'partial', 'in_payment')
+                                    or move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')
+                                )"
+                    context="{'dont_redirect_to_payments': True, 'display_account_trust': True}" type="object" class="oe_highlight" string="Custom Pay" data-hotkey="i" groups="account.group_account_invoice"/>
+                </xpath>
+
+
+                 <xpath expr="//field[@name='checked']" position="after">
+                    <field name="without_access" groups="i_tech_royal_rahmani_base.i_tech_accounting_without_access_field"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+
+
+        <!-- <record id="i_tech_base_view_account_move_tree" model="ir.ui.view">
+            <field name="name">i.tech.base.account.move.view.tree.inherit
+            </field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_partner_display_name']"  position="after" >
+                    <field name="move_type" invisible="1" />
+                    <field name="i_tech_dispatch_seq_no" optional="hide" column_invisible="1"/>
+
+                </xpath>
+
+
+            </field>
+
+
+        </record> -->
+
+
+   <record id="sale_order_form_show_prices_btn" model="ir.ui.view">
+        <field name="name">sale.order.form.show.prices.button</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- نضيف الزر في شريط الأزرار -->
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_show_prices"
+                    type="object"
+                    string="Show Prices"
+                    class="btn-primary"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+    </data>
+
+</odoo>

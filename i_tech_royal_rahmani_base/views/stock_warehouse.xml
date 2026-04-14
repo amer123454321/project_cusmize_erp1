@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="i_tech_base_view_stock_warehouse_form" model="ir.ui.view">
+    <field name="name">i.tech.base.date.stock.warehouse.type.view.form.inherit</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                    <page string="ITech Options">
+                        <group>
+                            <field name="i_tech_analytic_account"/>
+                        </group>
+                        <group name="" string="">
+
+                        </group>
+                    </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

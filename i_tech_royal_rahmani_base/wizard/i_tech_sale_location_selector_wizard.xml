@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="i_tech_sale_location_selector_wizard_form_view" model="ir.ui.view">
+            <field name="name">i.tech.sale.location.selector.wizard.form.view</field>
+            <field name="model">i.tech.sale.location.selector.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Location Selector">
+                    <sheet>
+                        <group>
+                            <field name="name" readonly="1" invisible="1"/>
+                            <field name="sale_order_id" readonly="1" invisible="1"/>
+                            <field name="sale_order_line_id" readonly="1"/>
+                            <field name="product_uom_qty" readonly="1"/>
+                        </group>
+
+                    <notebook>
+                        <page name="lines" string="Available Stock in Locations">
+                            <field name="line_ids">
+                                <list readonly="1" create="0" editable="bottom" delete="0">
+                                    <field name="location_id" readonly="1" force_save="1"/>
+                                    <field name="on_hand" readonly="1" force_save="1"/>
+                                    <field name="qty_available" readonly="1" force_save="1"/>
+                                    <field name="route_id" column_invisible="1" force_save="1"/> 
+                                    <field name="selected" force_save="1" widget="boolean_toggle"/>  
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                    </sheet>
+
+                    <footer>
+                        <button string="Select" type="object" class="btn-primary" name="action_select"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="action_i_tech_sale_location_selector_wizard" model="ir.actions.act_window">
+            <field name="name">Location Selector</field>
+            <field name="res_model">i.tech.sale.location.selector.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

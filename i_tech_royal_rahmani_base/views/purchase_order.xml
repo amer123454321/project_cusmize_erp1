@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 
+  <template id="i_tech_base_purchase_order_report" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//table[hasclass('table')]//tr//th[@name='th_description']" position="before">
+            <th name="th_sequence" class="text-start">#</th>
+            <th name="th_code" class="text-start">Code</th>
+        </xpath>
+        <xpath expr="//tbody//tr//td" position="before">
+            <td name="td_sequence">
+                <span t-esc="line.sequence_number"/>
+            </td>
+        </xpath>
+        <xpath expr="//tbody//tr//td[@name='td_sequence']" position="after">
+        </xpath>
+    </template>
+
+    <template id="i_tech_base_purchase_quotation_report"
+              inherit_id="purchase.report_purchasequotation_document">
+        <xpath expr="//table[hasclass('table')]//tr//th[@name='th_description']" position="before">
+            <th name="th_sequence" class="text-start">#</th>
+            <th name="th_code" class="text-start">Code</th>
+        </xpath>
+
+        <xpath expr="//tbody//tr//td" position="before">
+            <td name="td_sequence">
+                <span t-esc="order_line.sequence_number"/>
+            </td>
+        </xpath>
+    </template>
+
+    <record id="i_tech_base_purchase_order_form" model="ir.ui.view">
+        <field name="name">i.tech.base.purchase.order.view.form.inherit.order.line.base</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//list//field[@name='product_id']"
+                   position="before">
+                <field name="sequence_number"/>
+            </xpath>
+            <!-- <xpath expr="//field[@name='order_line']//list//field[@name='product_id']" position="after">
+                <field name="i_tech_color_tag_id" widget="tags" options="{'color_field': 'color'}" optional="show"/>
+            </xpath> -->
+        </field>
+    </record>
+
+
+    
+</odoo>

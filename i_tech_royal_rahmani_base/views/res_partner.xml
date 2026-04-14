@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+
+    <record id="i_tech_res_partner_form_view_inherit" model="ir.ui.view">
+        <field name="name">i.tech.res.partner.form.view.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <field name="user_id" position="attributes">
+                    <attribute name="domain" />
+            </field>
+
+            
+            <xpath expr="//group[@name='sale']" position="inside">
+                <field name="i_tech_partner_type_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="i_tech_require_driver_and_vehicle" widget="boolean_toggle"/>
+                <field name="i_tech_property_currency_id"/>
+            </xpath>
+            
+
+        </field>
+    </record>    
+
+
+
+    <record id="i_tech_view_res_partner_form_sale_custom" model="ir.ui.view">
+        <field name="name">res.partner.form.sale.custom</field>
+        <field name="model">res.partner</field>
+        <field name="priority">120</field>
+        <field name="arch" type="xml">
+            <form string="Customer (Sales)">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="phone" required="1"/>
+                            <!-- <field name="mobile" required="1"/> -->
+                            <field name="country_id" required="1"/>
+                            <field name="state_id" required="1"/>
+                            <field name="city" required="1"/>
+                            <field name="street" required="1"/>
+                            <field name="street2"/>
+                        </group>
+                        <group>
+                            
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="i_tech_product_pricelist_form" model="ir.ui.view">
+            <field name="name">i.tech.product.pricelist.form.inherit</field>
+            <field name="model">product.pricelist</field>
+            <field name="inherit_id" ref="product.product_pricelist_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']"  position="after">
+                    <field name="i_tech_free_product_account_id"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+
+
+    </data>
+
+</odoo>

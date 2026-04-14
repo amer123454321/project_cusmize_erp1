@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+
+
+        
+        <record id="i_tech_hide_account_view_account_move_form" model="ir.ui.view">
+            <field name="name">i.tech.hide.account.account.move.view.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                
+            
+            <xpath expr="//field[@name='line_ids']//list//field[@name='debit']" position="before">
+                <field name="i_tech_hide_account"  optional="hide"/>
+            </xpath>   
+
+            <xpath expr="//field[@name='line_ids']//list//field[@name='debit']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//list//field[@name='credit']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//list//field[@name='amount_currency']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//list//field[@name='balance']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+
+
+            <xpath expr="//field[@name='line_ids']//form//field[@name='debit']" position="before">
+                <field name="i_tech_hide_account" invisible="1"/>
+            </xpath>   
+
+            <xpath expr="//field[@name='line_ids']//form//field[@name='debit']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//form//field[@name='credit']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//form//field[@name='amount_currency']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//form//field[@name='balance']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+
+
+
+            </field>
+        </record>
+
+
+        <record id="i_tech_base_view_account_move_line_list" model="ir.ui.view">
+            <field name="name">i.tech.base.account.move.line.view.list.inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='debit']" position="before">
+                    <field name="i_tech_hide_account"  optional="hide"/>
+                </xpath>
+
+                <xpath expr="//field[@name='debit']" position="attributes">
+                    <attribute name="invisible">i_tech_hide_account</attribute>
+                </xpath>
+                <xpath expr="//field[@name='credit']" position="attributes">
+                    <attribute name="invisible">i_tech_hide_account</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_currency']" position="attributes">
+                    <attribute name="invisible">i_tech_hide_account</attribute>
+                </xpath>
+                <xpath expr="//field[@name='balance']" position="attributes">
+                    <attribute name="invisible">i_tech_hide_account</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_residual']" position="attributes">
+                    <attribute name="invisible">i_tech_hide_account</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_residual_currency']" position="attributes">
+                    <attribute name="invisible">i_tech_hide_account</attribute>
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+
+        <record id="i_tech_base_view_account_move_line_form" model="ir.ui.view">
+            <field name="name">i.tech.base.account.move.line.view.form.inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='debit']" position="before">
+                    <field name="i_tech_hide_account"  optional="hide"/>
+                </xpath>
+
+                <xpath expr="//field[@name='debit']" position="attributes">
+                    <attribute name="invisible">i_tech_hide_account</attribute>
+                </xpath>
+                <xpath expr="//field[@name='credit']" position="attributes">
+                    <attribute name="invisible">i_tech_hide_account</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='balance']" position="attributes">
+                    <attribute name="invisible">i_tech_hide_account</attribute>
+                </xpath>
+
+
+
+            </field>
+        </record>
+
+
+
+
+        <record id="i_tech_account_move_line_view_kanban_inherit_hide_amount" model="ir.ui.view">
+            <field name="name">i.tech.account.move.line.kanban.inherit.hide.amount</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.account_move_line_view_kanban"/>
+            <field name="arch" type="xml">
+
+                 <xpath expr="//kanban" position="inside">
+                    <field name="i_tech_hide_account"/>
+                </xpath>
+
+
+                <xpath expr="//div[@class='col-6 text-end']" position="attributes">
+                    <attribute name="t-if">
+                        not record.i_tech_hide_account.raw_value
+                    </attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+
+
+        <record id="i_tech_hide_account_view_move_line_reconcile_tree" model="ir.ui.view">
+            <field name="name">i.tech.hide.account.view.move.line.reconcile.tree.inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account_accountant.view_move_line_reconcile_tree"/>
+            <field name="arch" type="xml">
+
+           <xpath expr="//field[@name='debit']" position="before">
+                <field name="i_tech_hide_account"  optional="hide"/>
+            </xpath>
+
+            <xpath expr="//field[@name='debit']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='credit']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount_currency']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='balance']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount_residual']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='amount_residual_currency']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+
+
+          
+
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+
+        <!-- <record id="i_tech_hide_account_account_move_line_tax_audit_list_inherit" model="ir.ui.view">
+            <field name="name">i.tech.hide.account.account.move.line.tax.audit.list.inherit</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_tax_audit_tree"/>
+            <field name="arch" type="xml">
+                
+            
+            <xpath expr="//field[@name='line_ids']//list//field[@name='debit']" position="before">
+                <field name="i_tech_hide_account"  optional="hide"/>
+            </xpath>   
+
+            <xpath expr="//field[@name='line_ids']//list//field[@name='debit']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']//list//field[@name='credit']" position="attributes">
+                <attribute name="invisible">i_tech_hide_account</attribute>
+            </xpath>
+
+
+
+            </field>
+        </record> -->
+
+
+
+
+
+
+    </data>
+
+</odoo>

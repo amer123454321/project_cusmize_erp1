@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="i_tech_base_sales_report" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table[hasclass('table')]//tr//th[@name='th_description']"
+               position="before">
+            <th name="th_sequence" class="text-start">#</th>
+        </xpath>
+        <xpath expr="//tbody[hasclass('sale_tbody')]//tr//td[@name='td_name']"
+               position="before">
+            <td name="td_sequence">
+                <span t-esc="line.sequence_number"/>
+            </td>
+        </xpath>
+    </template>
+    
+    
+     <record id="i_tech_base_view_order_list" model="ir.ui.view">
+        <field name="name">i.tech.base.sale.order.view.list.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="warehouse_id"/>
+            </xpath>                
+         </field>
+    </record>    
+
+
+
+
+    <record id="i_tech_base_view_order_form" model="ir.ui.view">
+        <field name="name">i.tech.base.sale.order.view.form.inherit.order.line.base</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="partner_id"
+                    widget="res_partner_many2one"
+                    context="{
+                        'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True,
+                        'form_view_ref': 'i_tech_royal_rahmani_base.i_tech_view_res_partner_form_sale_custom',
+                        'from_sale_order': True,
+                        'i_tech_partner_type_id': 'cash_customer'
+                    }"
+                    placeholder="Type to find a customer..." 
+                    readonly="state in ['cancel', 'sale']"
+                    can_create="True" can_write="True"
+                    options="{
+                        'no_create_edit': False,
+                        'no_quick_create': True
+                        
+                    }"/>
+            </xpath>
+            
+
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                
+                <field name="i_tech_sale_type" widget="radio"/>
+                <field name="i_tech_require_driver_and_vehicle" widget="boolean_toggle"/>
+                <field name="i_tech_analytic_account" groups="i_tech_royal_rahmani_base.i_tech_sale_analytic_account"/>
+                <field name="i_tech_used_transfer_discount_in_invoice"  groups="i_tech_royal_rahmani_base.i_tech_sale_transfer_discount"/>
+                <field name="i_tech_sale_order_transfer_discount" />
+                <field name="client_order_ref" required="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']//list//field[@name='product_id']" position="before">
+                <field name="sequence_number"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//list//field[@name='product_uom_qty']" position="after">
+                <field name="i_tech_color_tag_id" force_save="1"  options="{'no_open': True, 'no_create': True}"/>
+                <field name="i_tech_free_product" force_save="1"  options="{'no_open': True, 'no_create': True}"/>
+            </xpath>
+            <!-- <xpath expr="//field[@name='order_line']//list//field[@name='pirce_unit']" position="before">
+                <field name="i_tech_free_product" force_save="1"  options="{'no_open': True, 'no_create': True}"/>
+            </xpath> -->
+            <xpath expr="//field[@name='order_line']//list//field[@name='analytic_distribution']" position="before">
+                <button string="S.L." type="object" class="btn-primary" name="action_open_location_selector_wizard"/>
+                <field name="i_tech_location_id" force_save="1" domain="[('usage','=','internal'),('warehouse_id','=', warehouse_id)]" required="i_tech_use_sale_location_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="i_tech_use_sale_location_id" column_invisible="1"/>
+            </xpath>
+                
+         </field>
+    </record>        
+
+
+
+    
+
+
+   
+
+</odoo>

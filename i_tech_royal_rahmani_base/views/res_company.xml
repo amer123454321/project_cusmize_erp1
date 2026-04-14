@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="i_tech_base_company_form_inherit_partner_autocomplete" model="ir.ui.view">
+        <field name="name">i.tech.base.res.company.form.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                    <page string="ITech Options">
+                        <group>
+                            <field name="i_tech_use_sale_location_id" widget="boolean_toggle"/>
+                            <field name="i_tech_sale_order_transfer_discount_account"/>
+                        </group>
+                        <group name="" string="">
+
+                        </group>
+                    </page>
+                </xpath>
+
+        </field>
+    </record>
+
+</odoo>

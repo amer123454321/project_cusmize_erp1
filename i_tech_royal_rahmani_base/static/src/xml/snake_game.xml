@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="i_tech_royal_rahmani_base.SnakeGameAction" owl="1">
+        <div class="o_snake_game o_action">
+            <div class="o_snake_game__panel">
+                <div class="o_snake_game__header">
+                    <div>
+                        <h1 class="o_snake_game__title">Snake</h1>
+                        <p class="o_snake_game__subtitle">Arrow keys or WASD to move. Space pauses. Enter restarts after game over.</p>
+                    </div>
+                    <div class="o_snake_game__stats">
+                        <span class="o_snake_game__stat">Score: <strong t-esc="state.score"/></span>
+                        <span class="o_snake_game__stat">Status: <strong t-esc="statusLabel"/></span>
+                    </div>
+                </div>
+
+                <div class="o_snake_game__board" t-att-style="gridStyle">
+                    <t t-foreach="cells" t-as="cell" t-key="cell.key">
+                        <div t-attf-class="o_snake_game__cell o_snake_game__cell--#{cell.kind}"/>
+                    </t>
+                </div>
+
+                <div class="o_snake_game__actions">
+                    <button type="button" class="btn btn-secondary" t-on-click="togglePause">
+                        <t t-if="state.status === 'paused'">Resume</t>
+                        <t t-else="">Pause</t>
+                    </button>
+                    <button type="button" class="btn btn-primary" t-on-click="restart">Restart</button>
+                </div>
+
+                <div class="o_snake_game__controls" aria-label="Snake controls">
+                    <button type="button" class="btn btn-secondary o_snake_game__control o_snake_game__control--up" t-on-click="goUp">Up</button>
+                    <button type="button" class="btn btn-secondary o_snake_game__control o_snake_game__control--left" t-on-click="goLeft">Left</button>
+                    <button type="button" class="btn btn-secondary o_snake_game__control o_snake_game__control--down" t-on-click="goDown">Down</button>
+                    <button type="button" class="btn btn-secondary o_snake_game__control o_snake_game__control--right" t-on-click="goRight">Right</button>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

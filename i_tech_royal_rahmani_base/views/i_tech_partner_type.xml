@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="i_tech_partner_type_list_view" model="ir.ui.view">
+        <field name="name">i.tech.partner.type.list.view</field>
+        <field name="model">i.tech.partner.type</field>
+        <field name="arch" type="xml">
+            <list string="Partner Types" class="o_list_view table-striped table-sm">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="property_account_receivable_id"/>
+                <field name="property_account_payable_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="i_tech_partner_type_form_view" model="ir.ui.view">
+        <field name="name">i.tech.partner.type.form.view</field>
+        <field name="model">i.tech.partner.type</field>
+        <field name="arch" type="xml">
+            <form string="Charter">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field name="property_account_receivable_id"/>
+                            <field name="property_account_payable_id"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/> 
+            </form>
+        </field>
+    </record>
+
+        
+
+
+    <record id="action_i_tech_partner_type" model="ir.actions.act_window">
+                <field name = "name">Partner Type</field>
+                <field name = "type">ir.actions.act_window</field>
+                <field name = "res_model">i.tech.partner.type</field>
+                <field name = "view_mode">list,form</field>
+                <field name = "domain">[]</field>
+                <field name = "context">{}</field>
+    </record>
+        
+    
+
+
+</odoo>

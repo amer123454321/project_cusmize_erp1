@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 
+    <record id="i_tech_account_payment_register_wizard" model="ir.ui.view">
+        <field name="name">i.tech.account.payment.register.wizard</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='amount']" position="before">
+                <field name="i_tech_exchange_rate" force_save="1" invisible="company_currency_id == currency_id"/>
+                <field name="i_tech_orgin_amount" readonly="1" force_save="1" invisible="company_currency_id == currency_id"/>
+                <field name="i_tech_exchange_difference" readonly="1" force_save="1" invisible="company_currency_id == currency_id"/>
+                <field name="i_tech_custom_user_rate" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+</odoo>

@@ -1,0 +1,114 @@
+<odoo>
+
+    <data>
+
+
+     <template id="report_customer_payment_template">
+           <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+
+
+                <t t-foreach="docs" t-as="o">
+<main class="container" dir="rtl">
+    <h5 style="text-align:center; margin-bottom:20px;">وصل قبض نقدي / Voucher Receipt</h5>
+
+    <div class="d-flex justify-content-between p-2 align-items-center mb-4">
+        <div class="d-flex align-items-center gap-2">
+            <span>التاريخ :</span>
+            20/9/1997
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+
+<span>الرقم :</span>
+<span>0785555555</span>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-1"/>
+
+        <div class="col-3" dir="ltr">
+            <div class="border d-flex justify-content-start align-items-center" style="height:60px; width:100%;">
+
+                <strong style="margin-left:6px;">$</strong>
+
+
+            </div>
+        </div>
+
+        <div class="col-4"/>
+
+        <div class="col-3" dir="ltr">
+            <div class="border d-flex justify-content-start align-items-center" style="height:60px; width:100%;">
+                <strong style="margin-left:6px;">ID <t t-esc="o.name"/></strong>
+            </div>
+        </div>
+
+        <div class="col-1"/>
+    </div>
+
+    <ul style="list-style: none; padding:0; margin:0; margin-right:15%; ">
+        <li style="display:flex; margin-top:20px;">
+            <strong>إٕستلمت من السيد/ة : </strong>
+            <span style="border-bottom:1px dotted #000; display:inline-block; width:60%; margin-left:10px;"/>
+            <strong>: Received from</strong>
+
+        </li>
+        <li style="display:flex; margin-top:20px;">
+            <strong>مبلغآً و قدره :</strong>
+            <span style="border-bottom:1px dotted #000; display:inline-block; width:68%; margin-left:10px;"/>
+            <strong>: Amount</strong>
+
+        </li>
+        <li style="display:flex; margin-top:20px;">
+            <strong>وذلك لقاء :</strong>
+            <span style="border-bottom:1px dotted #000; display:inline-block; width:70%; margin-left:10px;"/>
+            <strong>: Being</strong>
+
+        </li>
+    </ul>
+    <br/>
+    <br/>
+
+
+    <div class="row mb-4">
+        <div class="col-2"/>
+
+        <div class="col-2">
+                 <span>إسم وتوقيع المسلم</span>
+
+        </div>
+
+       <div class="col-5"></div>
+
+<div class="col-2 text-end">
+    <span>إسم وتوقيع المستلم</span>
+</div>
+          <!--<div class="col-1"/>-->
+
+    </div>
+
+</main>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <record id="i_tech_account_report_customer_payment_invoice" model="ir.actions.report">
+            <field name="name">Customer Payment Invoice</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">i_tech_royal_rahmani_custom_report_layout.report_customer_payment_template</field>
+            <field name="report_file">i_tech_royal_rahmani_custom_report_layout.report_customer_payment_template</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+
+    </data>
+</odoo>
+

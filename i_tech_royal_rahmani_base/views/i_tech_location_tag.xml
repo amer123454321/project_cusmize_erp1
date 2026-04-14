@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="i_tech_location_tag_list_view" model="ir.ui.view">
+        <field name="name">i.tech.location.tag.list.view</field>
+        <field name="model">i.tech.location.tag</field>
+        <field name="arch" type="xml">
+            <list string="Orders" class="o_list_view table-striped table-sm">
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="product_id"/>
+                <field name="location_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="i_tech_location_tag_form_view" model="ir.ui.view">
+        <field name="name">i.tech.location.tag.form.view</field>
+        <field name="model">i.tech.location.tag</field>
+        <field name="arch" type="xml">
+            <form string="Charter">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="product_id"/>
+                            <field name="location_id"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/> 
+            </form>
+        </field>
+    </record>
+
+        
+    
+
+
+
+    <record id="i_tech_location_tag_line_list_view" model="ir.ui.view">
+        <field name="name">i.tech.location.tag.line.list.view</field>
+        <field name="model">i.tech.location.tag.line</field>
+        <field name="arch" type="xml">
+            <list string="Orders" class="o_list_view table-striped table-sm">
+                <field name="name"/>
+                <field name="location_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="i_tech_location_tag_line_form_view" model="ir.ui.view">
+        <field name="name">i.tech.location.tag.line.form.view</field>
+        <field name="model">i.tech.location.tag.line</field>
+        <field name="arch" type="xml">
+            <form string="Charter">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="location_id"/>
+                            <!-- <field name="color" options="{'color_field': 'color'}"/> -->
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/> 
+            </form>
+        </field>
+    </record>
+
+
+    
+
+    <record id="action_i_tech_location_tag" model="ir.actions.act_window">
+                <field name = "name">Location Tag</field>
+                <field name = "type">ir.actions.act_window</field>
+                <field name = "res_model">i.tech.location.tag</field>
+                <field name = "view_mode">list,form</field>
+                <field name = "domain">[]</field>
+                <field name = "context">{}</field>
+    </record>
+        
+    
+    <record id="action_i_tech_location_tag_line" model="ir.actions.act_window">
+                <field name = "name">Location Tag line</field>
+                <field name = "type">ir.actions.act_window</field>
+                <field name = "res_model">i.tech.location.tag.line</field>
+                <field name = "view_mode">list,form</field>
+                <field name = "domain">[]</field>
+                <field name = "context">{}</field>
+    </record>
+
+</odoo>

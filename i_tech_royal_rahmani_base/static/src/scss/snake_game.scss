@@ -1,0 +1,117 @@
+.o_snake_game {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+}
+
+.o_snake_game__panel {
+    width: min(100%, 720px);
+    background: var(--o-view-background-color, #fff);
+    border: 1px solid var(--border-color, #d9d9d9);
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.o_snake_game__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.o_snake_game__title {
+    margin: 0;
+    font-size: 24px;
+}
+
+.o_snake_game__subtitle {
+    margin: 4px 0 0;
+    color: var(--o-main-text-color-muted, #6c757d);
+}
+
+.o_snake_game__stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px 16px;
+}
+
+.o_snake_game__stat {
+    font-size: 14px;
+}
+
+.o_snake_game__board {
+    display: grid;
+    gap: 2px;
+    aspect-ratio: 1;
+    padding: 12px;
+    background: #f3f4f6;
+    border-radius: 8px;
+}
+
+.o_snake_game__cell {
+    aspect-ratio: 1;
+    border-radius: 2px;
+    background: #ffffff;
+}
+
+.o_snake_game__cell--snake {
+    background: #4f6f52;
+}
+
+.o_snake_game__cell--head {
+    background: #294b29;
+}
+
+.o_snake_game__cell--food {
+    background: #c44b4b;
+}
+
+.o_snake_game__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.o_snake_game__controls {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(56px, 72px));
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.o_snake_game__control--up {
+    grid-column: 2;
+}
+
+.o_snake_game__control--left {
+    grid-column: 1;
+}
+
+.o_snake_game__control--down {
+    grid-column: 2;
+}
+
+.o_snake_game__control--right {
+    grid-column: 3;
+}
+
+@media (max-width: 767.98px) {
+    .o_snake_game {
+        padding: 16px;
+    }
+
+    .o_snake_game__panel {
+        padding: 16px;
+    }
+
+    .o_snake_game__header {
+        flex-direction: column;
+    }
+
+    .o_snake_game__stats {
+        justify-content: flex-start;
+    }
+}

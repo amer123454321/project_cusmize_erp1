@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="i_tech_base_view_picking_type_form" model="ir.ui.view">
+    <field name="name">i.tech.base.date.stock.picking.type.view.form.inherit</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_type']" position="after">
+                <field name="i_tech_use_color_tag" widget="boolean_toggle"/>   
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

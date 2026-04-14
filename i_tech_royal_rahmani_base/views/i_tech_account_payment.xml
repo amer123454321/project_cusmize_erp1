@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ================= FORM VIEW ================= -->
+    <record id="i_tech_account_payment_form_view" model="ir.ui.view">
+        <field name="name">i.tech.account.payment.form.view</field>
+        <field name="model">i.tech.account.payment</field>
+        <field name="arch" type="xml">
+            <form string="Account Payment">
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="payment_date"/>
+                            <field name="partner_id" readonly="account_move_ids"  options="{'no_create': True, 'no_open': True}"/>
+                            <field name="salesperson_user_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="move_type" readonly="1"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+
+                        <group>
+                            <field name="total_due_amount"/>
+                            <field name="partner_currency_id" invisible="1"/>
+                            <field name="total_payment"/>
+                            <field name="remaining_amount"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="journal_id" optional="show" domain="[('type', 'in', ('bank', 'cash', 'credit')),('company_id', '=', company_id)]"  options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="account_id" optional="show" domain="[('i_tech_use_custom_payment', '=', True)]" required="discount_amount &lt; 0"  options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="company_id" column_invisible="1"/>
+                                    <field name="company_currency_id"  column_invisible="True"/>
+                                    <field name="cash_currency_id"  options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="partner_currency_id"  options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="rate"/>
+                                    <field name="amount"/>
+                                    <field name="cash_amount"/>
+                                    <field name="discount_amount"/>
+                                    <field name="partner_amount"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Invoices / Bills">
+                            <field name="account_move_ids" widget="many2many_tags"  readonly="1"/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+                <footer>
+                         <button name="action_create_payments"
+                            type="object"
+                            string="Create Payments"
+                            class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ================= ACTION ================= -->
+    <record id="action_i_tech_account_payment" model="ir.actions.act_window">
+        <field name="name">Account Payments</field>
+        <field name="res_model">i.tech.account.payment</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ================= MENU ================= -->
+
+
+</odoo>

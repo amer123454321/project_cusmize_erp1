@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="i_tech_stock_picking_report" inherit_id="stock.report_picking">
+        <xpath expr="//table[hasclass('table')]//tr//th[@name='th_product']"
+               position="before">
+            <th name="th_sequence" class="text-start">#</th>
+            <th name="th_code" class="text-start">Code</th>
+        </xpath>
+        <xpath expr="//tbody//tr//td"
+               position="before">
+            <td name="td_sequence">
+            
+                <span t-esc="1 + ml_index"/>
+            </td>
+            <td name="td_code">
+                <span t-field="ml.product_id.default_code"/>
+            </td>
+        </xpath>
+    </template>
+
+    <record id="i_tech_view_picking_form" model="ir.ui.view">
+    <field name="name">i.tech.stock.picking.view.form.inherit.order.line.base</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='backorder_id']" position="after">
+                <field name="sale_id" invisible="1"/>
+                <field name="i_tech_require_driver_and_vehicle" invisible="1"/>
+                <field name="i_tech_driver_id"  domain="[('is_driver','=',True)]" invisible="not sale_id" required="i_tech_require_driver_and_vehicle" context="{'i_tech_partner_type_id': 'driver'}"/>
+                <field name="i_tech_vehicle_number" invisible="not sale_id" required="i_tech_require_driver_and_vehicle"/>
+            </xpath>    
+
+            <xpath expr="//field[@name='move_ids_without_package']//list//field[@name='location_id']" position="before">
+                <button string="S.L." type="object" class="btn-primary" name="action_open_location_selector_wizard"/>
+                <field name="location_id" force_save="1" domain="[('usage','=','internal'),('warehouse_id','=', warehouse_id)]" required="1" options="{'no_open': True, 'no_create': True}"/>
+                
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']//list//field[@name='quantity']" position="after">
+                <field name="i_tech_color_tag_id" options="{'no_open': True, 'no_create': True}" invisible="not i_tech_use_color_tag or picking_code != 'outgoing'" optional="show"/>  
+                <field name="i_tech_use_color_tag" column_invisible="1" force_save="1"/>
+                <field name="i_tech_location_tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" groups="i_tech_royal_rahmani_base.i_tech_location_tag_access" optional="show"/>
+
+
+            </xpath>
+
+
+
+
+        </field>
+    </record>
+
+
+
+
+
+
+
+
+</odoo>

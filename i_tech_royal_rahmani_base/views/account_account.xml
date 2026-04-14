@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <record id="i_tech_account_account_form_view" model="ir.ui.view">
+            <field name="name">i.tech.account.account.view.form.inherit</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_type']" position="after">
+                    <field name="i_tech_use_custom_payment" widget="boolean_toggle"/>
+                    <field name="i_tech_hide_account" widget="boolean_toggle" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>
